@@ -2,84 +2,87 @@
 public class printing {
 	public static void main (String [] args)
     {
-	    String x = "D4io0mon8d";
+	    String x = "He4l0lo8";
 	    String y = "125+3";
 	    //printVowels(x);
         //printConsonants(x);
         //printDigits(x);
 	    processExpression(y);
     }
-	
-	
-	
-//this method takes a String and String as a parameter 
+
+	   
+//this method takes a String as a parameter 
 //and print all the vowels contained in that String one character per line.
     static void printVowels (String x)
       { 
 	     for(int i=0; i< x.length();i++)
 	       {
-		     if(x.charAt(i)=='a'|| x.charAt(i)=='e' || x.charAt(i)=='i' || x.charAt(i)=='o' || x.charAt(i)=='u' )
-				System.out.println(x.charAt(i)+"\n");
+	    	 String vowels = "aAeEiIoOuU";
+		     if(vowels.indexOf(x.charAt(i))!= -1 )	 
+			    System.out.println(x.charAt(i));
 	       }
 	  }
 
+    
+  //this method takes a String as a parameter 
+  	//and print all the consonants contained in that String one character per line.
+  	   static void printConsonants(String x)
+  	     { 
+  	         for(int i=0; i< x.length();i++)
+  	           {
+  		         String consonnants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+  			     if(consonnants.indexOf(x.charAt(i))!= -1 )
+  			        System.out.println(x.charAt(i));
+  	           }
+  	     }
+
 
 //this method takes a String as a parameter 
-//and print all the consonants contained in that String one character per line.
-   static void printConsonants(String x)
-     { 
-         for(int i=0; i< x.length();i++)
-           {
-	        if(x.charAt(i)=='a'|| x.charAt(i)=='e' || x.charAt(i)=='i' || x.charAt(i)=='o' || x.charAt(i)=='u' )
-			continue;
-	        
-		    else
-		    System.out.println(x.charAt(i)+"\n");
-		 
-           }
-     }
-
-
-//this method a String as a parameter 
 //and print all the numeric digits contained in that String one character per line.
-    static void printDigits(String x)
-       { 
-          for(int i=0; i< x.length();i++)
-             {
-	           if(x.charAt(i)=='0' || x.charAt(i)=='1' || x.charAt(i)=='2' || x.charAt(i)=='3' || x.charAt(i)=='4' || x.charAt(i)=='5' || x.charAt(i)=='6' || x.charAt(i)=='7' || x.charAt(i)=='8' || x.charAt(i)=='9' )
-			    System.out.println(x.charAt(i)+"\n");
-             }
-       }
-
+  		static void printDigits(String x)
+  	       { 
+  	          for(int i=0; i< x.length();i++)
+  		         {
+  		           String numbers = "0123456789";
+  		 	       if(numbers.indexOf(x.charAt(i))!= -1 )
+  		 	           System.out.println(x.charAt(i));
+  		         }
+          }
 
 
 //this method should take a String in the format: "integer [[+-*/] integer]*]"
 //then the method should process this expression and return the result as an integer
-    static void processExpression(String y)
-       {
-	      int right=-1;
-	      int left= -1;
-	       for(int i=0; i< y.length();i++)
+static int processExpression(String y)
+        {
+    	   String current = "";//it helps to hold the current value
+    	   int result;//the expression total will held in this variable
+    	   
+	       for(int i=0; i< y.length();i++)//for looping until the end of string 
               {
-	    	   //System.out.println(y.charAt(i));
-	    	   int hold = y.charAt(i);  	   
-	    	   if (y.charAt(i)== '+')
-	    	      {   
-	    		   
-	    		   int Add = hold + y.charAt(i+1);
-	    	       System.out.println(Add);
-	    	      }
-	    	   if (y.charAt(i)== '-')
-	    	      {   
-	    		   int Sub = y.charAt(i-1)+ y.charAt(i+1);
-	    	       System.out.println(Sub);
-	    	      }  
-	    	   else
-	    		   continue;
-	    	   
+	    	   current = current + y.charAt(i);
+	    	   if(y.indexOf(i)!= -1)//to check that the string still has value
+	    	     {
+	    		   if(y.indexOf(y.charAt(i))== "+")//if the string hit (+) operator, do the addition
+	    		     {
+	    		      result = y.charAt(i-1) + y.charAt(i+1);
+	    		     }
+	    		   else if(y.indexOf(y.charAt(i))== "-")//if the string hit (-) operator, do the addition
+	    		     {
+	    			  result = y.charAt(i-1) - y.charAt(i+1);
+	    		     }
+	    		   else if(y.indexOf(y.charAt(i))== "*")//if the string hit (*) operator, do the addition
+	    		     {
+	    			  result = y.charAt(i-1) * y.charAt(i+1);
+	    		     }
+	    		   else if(y.indexOf(y.charAt(i))== "/")//if the string hit (/) operator, do the addition
+	    		     {
+	    			  result = y.charAt(i-1) / y.charAt(i+1);
+	    		     }
+	    	     }
               }
-	    }
-                  
+	     System.out.println(current);
+         return result;     
+	    }       
         
  }
     
